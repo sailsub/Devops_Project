@@ -1,0 +1,22 @@
+---
+- name: update web servers
+  hosts: webservers
+  become: yes
+  become_user: root
+  tasks:
+  - name: install git
+    package:
+      name: git
+      state: present
+  - name: install java
+    package:
+      name: openjdk-8-jdk
+      state: present
+  - name: copy chromedriver
+    copy:
+      src: /home/ubuntu/chromedriver
+      dest: /home/ubuntu
+  - name: install chromium driver
+    package:
+      name: chromium-browser
+      state: present
